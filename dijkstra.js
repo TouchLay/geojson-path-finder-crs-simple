@@ -4,7 +4,7 @@ module.exports = function(graph, start, end) {
     var costs = {};
     costs[start] = 0;
     var initialState = [0, [start], start];
-    var queue = new Queue([initialState], function(a, b) { return a[0] - b[0]; });
+    var queue = new Queue.default([initialState], function(a, b) { return a[0] - b[0]; });
     var explored = {};
 
     while (queue.length) {
