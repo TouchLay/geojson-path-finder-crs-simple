@@ -39,7 +39,7 @@ function topology(geojson, options) {
         precision = options.precision || 1e-5;
 
     var lineStrings = geoJsonFilterFeatures(geojson, isLineString);
-    var explodedLineStrings = explode(lineStrings);
+    var explodedLineStrings = explode.default(lineStrings);
     var vertices = explodedLineStrings.features.reduce(function buildTopologyVertices(cs, f, i, fs) {
             var rc = roundCoord(f.geometry.coordinates, precision);
             cs[keyFn(rc)] = f.geometry.coordinates;
