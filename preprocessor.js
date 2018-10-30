@@ -2,14 +2,26 @@
 
 var topology = require('./topology'),
     compactor = require('./compactor'),
-    distance = require('@turf/distance'),
-    roundCoord = require('./round-coord'),
-    point = require('turf-point');
+    roundCoord = require('./round-coord');
+
+
+var distance = function(point1, point2) {
+  var xs = 0;
+  var ys = 0;
+
+  xs = point2[1] - point1[1];
+  xs = xs * xs;
+
+  ys = point2[0] - point1[0];
+  ys = ys * ys;
+
+  return Math.sqrt( xs + ys );
+}
 
 module.exports = function preprocess(graph, options) {
     options = options || {};
     var weightFn = options.weightFn || function defaultWeightFn(a, b) {
-            return distance(point(a), point(b));
+            return distance(a, b);
         },
         topo;
 
